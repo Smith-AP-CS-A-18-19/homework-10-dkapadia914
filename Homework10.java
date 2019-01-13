@@ -1,14 +1,18 @@
 import java.util.ArrayList;
 
 public class Homework10 {
-
+private int[][] array;
+private int row;
+private int col;
 	/* Finish the constructor and create any necessary instance
 	 * variables. The constructor should create and save a
 	 * 2D array of int values with the designated rows and
 	 * columns
 	 */
 	public Homework10(int rows, int cols) {
-
+		array = new int[rows][cols];
+		row = rows;
+		col = cols;
 	}
 
 	/* Fill the stored array with increasing values. The
@@ -17,13 +21,24 @@ public class Homework10 {
 	 * row major order. Return the filled array
 	 */
 	public int[][] problem1(int n) {
-
+		int number = n;
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				array[i][j] = number;
+				number++;
+			}
+		}
+		return array;
 	}
 
 	/* Return row r of the stored array
 	 */
 	public int[] problem2(int r) {
-
+		int[] array1 = new int[col];
+		for (int i = 0; i < col; i++) {
+			array1[i] = array[r][i];
+		}
+		return array1;
 	}
 
 	/* Find and return the sum of the indicated cell and its
@@ -32,21 +47,56 @@ public class Homework10 {
 	 * or more neighbors
 	 */
 	public int problem3(int r, int c) {
-
+		int upper;
+		int lower;
+		int right;
+		int left;
+		if ((c - 1) < 0) {
+			left = 0;
+		} else {
+			left = array[r][c - 1];
+		}
+		if ((r - 1) < 0) {
+			upper = 0;
+		} else {
+			upper = array[r - 1][c];
+		}
+		if ((r + 1) >= array.length) {
+			lower = 0;
+		} else {
+			lower = array[r + 1][c];
+		}
+		if ((c + 1) >= array[0].length) {
+			right = 0;
+		} else {
+			right = array[r][c + 1];
+		}
+		int cell = array[r][c];
+		int sum = upper + lower + right + left + cell;
+		return sum;
 	}
 
 	/* Create and return an ArrayList that contains the
 	 * elements from the indicated column
 	 */
 	public ArrayList<Integer> problem4(int c) {
-
+		ArrayList<Integer> four = new ArrayList<Integer>();
+		for (int i = 0; i < array.length; i++) {
+			int num = array[i][c];
+			four.add(num);
+		}
+		return four;
 	}
 
 	/* Calculate and return the sum of the integers in
 	 * the supplied ArrayList
 	 */
 	public int problem5(ArrayList<Integer> aList) {
-
+		int sum = 0;
+		for (int i : aList) {
+			sum += i;
+		}
+		return sum;
 	}
 
 	public static void main(String[] args) {
